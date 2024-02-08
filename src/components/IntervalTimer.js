@@ -42,12 +42,16 @@ function IntervalTimer({sequence}) {
     isRunning ? 1 : null,
   )
 
+  function startTimer() {
+    lastTick.current = Date.now()
+    setIsRunning(true)
+  }
+
   function toggleTimer() {
     if (isRunning) {
       setIsRunning(false)
     } else {
-      lastTick.current = Date.now()
-      setIsRunning(true)
+      startTimer()
     }
   }
 
