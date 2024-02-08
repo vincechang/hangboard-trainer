@@ -1,12 +1,27 @@
+import {useState} from 'react'
+
+const MS_IN_SECOND = 1000
+
+function formatTime(time) {
+  return {
+    seconds: Math.floor(time / MS_IN_SECOND),
+    tenMs: Math.floor((time % MS_IN_SECOND) / 10),
+  }
+}
+
 function IntervalTimer({sequence}) {
+  const [duration] = useState(6999)
+
+  const formattedTime = formatTime(duration)
+
   return (
     <div>
       <button>
         <span>
-          <span>7</span>
+          <span>{formattedTime.seconds}</span>
           <span>s</span>
         </span>
-        <span>00</span>
+        <span>{formattedTime.tenMs}</span>
       </button>
       <div>
         <button>Start</button>
