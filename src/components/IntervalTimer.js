@@ -1,13 +1,5 @@
 import {useState} from 'react'
-
-const MS_IN_SECOND = 1000
-
-function formatTime(time) {
-  return {
-    seconds: Math.floor(time / MS_IN_SECOND),
-    tenMs: Math.floor((time % MS_IN_SECOND) / 10),
-  }
-}
+import {formatTime} from '../utils/FormatTime'
 
 function IntervalTimer({sequence}) {
   const [duration] = useState(6999)
