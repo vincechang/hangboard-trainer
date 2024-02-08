@@ -1,5 +1,12 @@
 import {useState} from 'react'
 import {formatTime} from '../utils/FormatTime'
+const HANG = 'HANG'
+const OFF = 'OFF'
+const REST = 'REST'
+
+const HANG_DURATION = 7
+const OFF_DURATION = 3
+const REST_DURATION = 60
 
 function IntervalTimer({sequence}) {
   const [duration] = useState(6999)
