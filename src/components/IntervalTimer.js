@@ -55,18 +55,27 @@ function IntervalTimer({sequence}) {
     }
   }
 
+  const stateColors = {
+    HANG: 'bg-nord11',
+    OFF: 'bg-nord13',
+    REST: 'bg-nord08',
+  }
+
   return (
-    <div>
-      <button onClick={toggleTimer}>
+    <div className={`w-40 p-3 rounded-md ${stateColors[state]}`}>
+      <button
+        className="items-baseline bg-transparent border-none cursor-pointer flex gap-4 select-none mx-auto"
+        onClick={toggleTimer}
+      >
         <span>
-          <span>{formattedTime.seconds}</span>
-          <span>s</span>
+          <span className="text-6xl">{formattedTime.seconds}</span>
+          <span className="text-2xl">s</span>
         </span>
-        <span>{formattedTime.tenMs}</span>
+        <span className="text-4xl">{formattedTime.tenMs}</span>
       </button>
-      <div>
-        <button onClick={toggleTimer}>{isRunning ? 'Stop' : 'Start'}</button>
+      <div className="flex justify-between">
         <button>Reset</button>
+        <button onClick={toggleTimer}>{isRunning ? 'Stop' : 'Start'}</button>
       </div>
     </div>
   )
