@@ -2,6 +2,7 @@ import {useRef, useState} from 'react'
 import {formatTime, MS_IN_SECOND} from '../utils/FormatTime'
 import {useInterval} from '../hooks/UseInterval'
 
+const STOP = 'STOP'
 const HANG = 'HANG'
 const OFF = 'OFF'
 const REST = 'REST'
@@ -14,7 +15,7 @@ function IntervalTimer({sequence}) {
   const lastTick = useRef(null)
   const [duration, setDuration] = useState(6999)
   const [isRunning, setIsRunning] = useState(false)
-  const [state, setState] = useState(HANG)
+  const [state, setState] = useState(STOP)
 
   const formattedTime = formatTime(duration)
 
@@ -52,6 +53,7 @@ function IntervalTimer({sequence}) {
       setIsRunning(false)
     } else {
       startTimer()
+      if (state === STOP) setState(HANG)
     }
   }
 
@@ -59,6 +61,7 @@ function IntervalTimer({sequence}) {
     HANG: 'bg-nord11',
     OFF: 'bg-nord13',
     REST: 'bg-nord08',
+    STOP: 'bg-nord14',
   }
 
   return (
