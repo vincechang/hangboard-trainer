@@ -57,6 +57,17 @@ function IntervalTimer({sequence}) {
     }
   }
 
+  function resetTimer() {
+    setDuration(7000)
+    setIsRunning(false)
+    setState(STOP)
+  }
+
+  function getToggleButtomText() {
+    if (state === STOP) return 'Start'
+    return isRunning ? 'Pause' : 'Resume'
+  }
+
   const stateColors = {
     HANG: 'bg-nord11',
     OFF: 'bg-nord13',
@@ -77,8 +88,8 @@ function IntervalTimer({sequence}) {
         <span className="text-4xl">{formattedTime.tenMs}</span>
       </button>
       <div className="flex justify-between">
-        <button>Reset</button>
-        <button onClick={toggleTimer}>{isRunning ? 'Stop' : 'Start'}</button>
+        <button onClick={resetTimer}>Reset</button>
+        <button onClick={toggleTimer}>{getToggleButtomText()}</button>
       </div>
     </div>
   )
